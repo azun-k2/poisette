@@ -58,7 +58,7 @@
     <a href="./">ホーム</a>
     <a href="support.html">サポート</a>
     <a href="privacy.html">プライバシーポリシー</a>
-    <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20macOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">メールでサポート</a>
+    <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20Mac%2C%20iPhone%20or%20iPad%3A%0A-%20macOS%20or%20iOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">メールでサポート</a>
     <!-- family:nav --><a href="./#more-apps">ほかのアプリ</a>
   <details class="family-lang"><summary aria-label="言語: 日本語"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18"/></svg><span>日本語</span></summary>
     <ul>
@@ -102,35 +102,35 @@
 </div>
 
 <section class="card">
-  <p class="note">この翻訳は便宜のために提供しています。正式な内容は<a href="../privacy.html">英語版のプライバシーポリシー</a>です。 最終更新日：2026 年 9 月 27 日</p>
+  <p class="note">この翻訳は便宜のために提供しています。正式な内容は<a href="../privacy.html">英語版のプライバシーポリシー</a>です。 最終更新日：2026 年 10 月 1 日</p>
   <h2>要点</h2>
   <p>Poisette は何も収集せず、何も送信せず、ネットワークにもアクセスしません。</p>
 </section>
 
 <section class="card">
   <h2>Poisette が読み取るもの</h2>
-  <p><strong>頭の傾き</strong>：ヘッドトラッキング対応のヘッドフォンから、macOS の Core Motion を通じて読み取ります。初めて「開始」または「キャリブレーション」を押したときに、macOS が「モーションとフィットネス」へのアクセスを求めます。それぞれの値は届いたその場で、背筋が伸びているか猫背かの判定に使われ、その後破棄されます。</p>
-  <p><strong>マイクが使用中かどうか</strong>：通話中に静かにしているため、いずれかの App がマイクを使っているかを確認します。読み取るのは macOS のオン／オフのフラグ 1 つだけです。マイクの許可は不要で、音は一切聞きません。</p>
-  <p><strong>App がフルスクリーンかどうか</strong>：最前面のウインドウのサイズから判断します。ウインドウの内容やタイトルを読み取ることはありません。</p>
+  <p><strong>頭の傾き</strong>：ヘッドトラッキング対応のヘッドフォンから、Core Motion を通じて読み取ります。初めて「開始」または「キャリブレーション」を押したときに、Mac、iPhone、iPad が「モーションとフィットネス」へのアクセスを求めます。それぞれの値は届いたその場で、背筋が伸びているか猫背かの判定に使われ、その後破棄されます。</p>
+  <p><strong>マイクが使用中かどうか</strong>：Mac では、通話中に静かにしているため、いずれかの App がマイクを使っているかを確認します。読み取るのは macOS のオン／オフのフラグ 1 つだけです。マイクの許可は不要で、音は一切聞きません。iPhone と iPad ではこのようなフラグは読み取りません。通話やほかの App が Poisette のサウンドを中断したときに、システムがそれを知らせます。</p>
+  <p><strong>App がフルスクリーンかどうか</strong>：Mac では、最前面のウインドウのサイズから判断します。ウインドウの内容やタイトルを読み取ることはありません。</p>
 </section>
 
 <section class="card">
   <h2>保存されるものと保存場所</h2>
-  <p>Mac 上の、この App 専用のサンドボックスコンテナの中に、キャリブレーション、設定、そして分単位の履歴（背筋を伸ばしていた時間と猫背だった時間、お知らせの回数を 1 時間ごとに 400 日分）が保存されます。今日のスコアと今週のデータは、Poisette 自身のウィジェットと共有されます。App を削除するとすべて消去され、設定 ▸ 履歴 からいつでもリセットできます。</p>
+  <p>Mac、iPhone、iPad 上の、この App 専用のコンテナの中に、キャリブレーション、設定、そして分単位の履歴（背筋を伸ばしていた時間と猫背だった時間、お知らせの回数を 1 時間ごとに 400 日分）が保存されます。今日のスコアと今週のデータは、Poisette 自身のウィジェットと共有されます。iPhone と iPad では、Poisette とそのウィジェットだけが読めるキーチェーン項目を経由します。App を削除するとすべて消去されますが、iOS がその小さなキーチェーン項目を残すことがあります。Mac では設定 ▸ 履歴、iPhone と iPad では設定の「履歴をリセット」から、いつでも履歴を消去できます。</p>
 </section>
 
 <section class="card">
   <h2>データの行き先</h2>
-  <p>どこにも行きません。<strong>Poisette にはネットワークのエンタイトルメントがありません</strong>。つまり、macOS 自体がネットワーク接続を開くことを許可しません。サーバも、解析も、アカウントもありません。CSV の書き出しは、保存した場所にだけ置かれます。</p>
+  <p>どこにも行きません。Mac 版の <strong>Poisette にはネットワークのエンタイトルメントがありません</strong>。つまり、macOS 自体がネットワーク接続を開くことを許可しません。iPhone と iPad 版には、ネットワーク通信のコードが含まれていません。集中用サウンドはデバイス上で作られ、通知もデバイス自身から届きます。サーバも、解析も、アカウントもありません。CSV の書き出しは、保存した場所にだけ置かれます。</p>
 </section>
 
 <section class="card">
   <h2>お問い合わせ</h2>
-  <p>このポリシーについてのご質問、そのほかのお問い合わせは：<a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20macOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a></p>
+  <p>このポリシーについてのご質問、そのほかのお問い合わせは：<a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20Mac%2C%20iPhone%20or%20iPad%3A%0A-%20macOS%20or%20iOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a></p>
 </section>
 
 <footer>
-<p>macOS 用 Poisette · <a href="./">ホーム</a> · <a href="support.html">サポート</a> · <a href="privacy.html">プライバシー</a> · <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20macOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a></p>
+<p>Mac、iPhone、iPad 用 Poisette · <a href="./">ホーム</a> · <a href="support.html">サポート</a> · <a href="privacy.html">プライバシー</a> · <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20Mac%2C%20iPhone%20or%20iPad%3A%0A-%20macOS%20or%20iOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a></p>
 </footer>
 </main>
 </body>

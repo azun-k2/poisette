@@ -58,7 +58,7 @@
     <a href="./">首页</a>
     <a href="support.html">支持</a>
     <a href="privacy.html">隐私政策</a>
-    <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20macOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">邮件支持</a>
+    <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20Mac%2C%20iPhone%20or%20iPad%3A%0A-%20macOS%20or%20iOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">邮件支持</a>
     <!-- family:nav --><a href="./#more-apps">更多应用</a>
   <details class="family-lang"><summary aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18"/></svg><span>简体中文</span></summary>
     <ul>
@@ -102,35 +102,35 @@
 </div>
 
 <section class="card">
-  <p class="note">本译文仅为方便阅读而提供；以<a href="../privacy.html">英文版隐私政策</a>为准。 最后更新：2026 年 9 月 27 日。</p>
+  <p class="note">本译文仅为方便阅读而提供；以<a href="../privacy.html">英文版隐私政策</a>为准。 最后更新：2026 年 10 月 1 日。</p>
   <h2>简要说明</h2>
   <p>Poisette 不收集任何内容，不发送任何内容，也没有网络访问权限。</p>
 </section>
 
 <section class="card">
   <h2>Poisette 读取什么</h2>
-  <p><strong>你头部的倾斜</strong>，来自支持头部追踪的耳机，通过 macOS 的 Core Motion 读取。你第一次按“开始”或“校准”时，macOS 会请求“运动与健身”权限。每个读数在到达时即用于区分坐直与驼背，随后丢弃。</p>
-  <p><strong>是否有 App 正在使用麦克风</strong>，以便在通话时保持安静。它只从 macOS 读取一个开或关的标志。这不需要麦克风权限，也不会听到任何声音。</p>
-  <p><strong>是否有 App 处于全屏</strong>，根据最前面窗口的大小判断。从不读取窗口的内容和标题。</p>
+  <p><strong>你头部的倾斜</strong>，来自支持头部追踪的耳机，通过 Core Motion 读取。你第一次按“开始”或“校准”时，你的 Mac、iPhone 或 iPad 会请求“运动与健身”权限。每个读数在到达时即用于区分坐直与驼背，随后丢弃。</p>
+  <p><strong>是否有 App 正在使用麦克风</strong>（仅限 Mac），以便在通话时保持安静。它只从 macOS 读取一个开或关的标志。这不需要麦克风权限，也不会听到任何声音。在 iPhone 和 iPad 上，它不读取这样的标志：当通话或其他 App 中断它的声音时，系统会通知 Poisette。</p>
+  <p><strong>是否有 App 处于全屏</strong>（仅限 Mac），根据最前面窗口的大小判断。从不读取窗口的内容和标题。</p>
 </section>
 
 <section class="card">
   <h2>存储什么，存在哪里</h2>
-  <p>存放在你 Mac 上该 App 自己的沙盒容器中：你的校准、你的设置，以及按分钟计的历史记录（你坐直和驼背的时长以及提醒次数，逐小时记录，保留 400 天）。今天的得分和你这一周的数据会与 Poisette 自己的小组件共享。删除 App 会移除所有这些数据；也可随时在“设置 ▸ 历史记录”中重置。</p>
+  <p>存放在你 Mac、iPhone 或 iPad 上该 App 自己的容器中：你的校准、你的设置，以及按分钟计的历史记录（你坐直和驼背的时长以及提醒次数，逐小时记录，保留 400 天）。今天的得分和你这一周的数据会与 Poisette 自己的小组件共享；在 iPhone 和 iPad 上，这些数据经由一个只有 Poisette 及其小组件才能读取的钥匙串项目传递。删除 App 会移除所有这些数据，但 iOS 可能会保留这个小小的钥匙串项目。在 Mac 上通过“设置 ▸ 历史记录”，在 iPhone 和 iPad 上通过“设置”中的“重置历史记录”，可随时清除历史记录。</p>
 </section>
 
 <section class="card">
   <h2>数据去向</h2>
-  <p>哪里也不去。<strong>Poisette 没有网络权利</strong>，这意味着 macOS 本身不会允许它建立网络连接。没有服务器，没有分析，也没有账户。导出的 CSV 只会存放在你保存的位置。</p>
+  <p>哪里也不去。在 Mac 上，<strong>Poisette 没有网络授权</strong>，这意味着 macOS 本身不会允许它建立网络连接。在 iPhone 和 iPad 上，它不包含任何联网代码。它的专注声音在设备上生成，通知也来自设备本身。没有服务器，没有分析，也没有账户。导出的 CSV 只会存放在你保存的位置。</p>
 </section>
 
 <section class="card">
   <h2>联系方式</h2>
-  <p>关于本政策或其他任何问题：<a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20macOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a>。</p>
+  <p>关于本政策或其他任何问题：<a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20Mac%2C%20iPhone%20or%20iPad%3A%0A-%20macOS%20or%20iOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a>。</p>
 </section>
 
 <footer>
-<p>适用于 macOS 的 Poisette · <a href="./">首页</a> · <a href="support.html">支持</a> · <a href="privacy.html">隐私</a> · <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20macOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a></p>
+<p>适用于 Mac、iPhone 和 iPad 的 Poisette · <a href="./">首页</a> · <a href="support.html">支持</a> · <a href="privacy.html">隐私</a> · <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20Mac%2C%20iPhone%20or%20iPad%3A%0A-%20macOS%20or%20iOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a></p>
 </footer>
 </main>
 </body>

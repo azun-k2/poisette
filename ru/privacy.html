@@ -58,7 +58,7 @@
     <a href="./">Главная</a>
     <a href="support.html">Поддержка</a>
     <a href="privacy.html">Политика конфиденциальности</a>
-    <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20macOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">Написать в поддержку</a>
+    <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20Mac%2C%20iPhone%20or%20iPad%3A%0A-%20macOS%20or%20iOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">Написать в поддержку</a>
     <!-- family:nav --><a href="./#more-apps">Другие приложения</a>
   <details class="family-lang"><summary aria-label="Язык: Русский"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18"/></svg><span>Русский</span></summary>
     <ul>
@@ -102,35 +102,35 @@
 </div>
 
 <section class="card">
-  <p class="note">Этот перевод предоставлен для удобства; имеющей силу версией является <a href="../privacy.html">политика конфиденциальности на английском языке</a>. Последнее обновление: 27 сентября 2026 г.</p>
+  <p class="note">Этот перевод предоставлен для удобства; имеющей силу версией является <a href="../privacy.html">политика конфиденциальности на английском языке</a>. Последнее обновление: 1 октября 2026 г.</p>
   <h2>Коротко</h2>
   <p>Poisette ничего не собирает, ничего не отправляет и не имеет доступа к сети.</p>
 </section>
 
 <section class="card">
   <h2>Что считывает Poisette</h2>
-  <p><strong>Наклон вашей головы</strong> — из наушников с отслеживанием головы, через Core Motion в macOS. macOS запрашивает доступ к «Движению и фитнесу», когда вы впервые нажимаете «Начать» или «Калибровать». Каждое показание используется по мере поступления, чтобы отличить прямую посадку от сутулой, и затем отбрасывается.</p>
-  <p><strong>Используется ли микрофон</strong> каким-либо приложением — чтобы молчать во время звонков. Poisette считывает из macOS единственный флаг «вкл./выкл.». Для этого не нужно разрешение на микрофон, и она ничего не слышит.</p>
-  <p><strong>Открыто ли приложение на весь экран</strong> — по размеру переднего окна. Содержимое и заголовки окон никогда не считываются.</p>
+  <p><strong>Наклон вашей головы</strong> — из наушников с отслеживанием головы, через Core Motion. Ваш Mac, iPhone или iPad запрашивает доступ к «Движению и фитнесу», когда вы впервые нажимаете «Начать» или «Калибровать». Каждое показание используется по мере поступления, чтобы отличить прямую посадку от сутулой, и затем отбрасывается.</p>
+  <p><strong>Используется ли микрофон</strong> каким-либо приложением — на Mac, чтобы молчать во время звонков. Poisette считывает из macOS единственный флаг «вкл./выкл.». Для этого не нужно разрешение на микрофон, и она ничего не слышит. На iPhone и iPad она не считывает такой флаг: система сама сообщает Poisette, когда звонок или другое приложение прерывает её звук.</p>
+  <p><strong>Открыто ли приложение на весь экран</strong> — на Mac, по размеру переднего окна. Содержимое и заголовки окон никогда не считываются.</p>
 </section>
 
 <section class="card">
   <h2>Что хранится и где</h2>
-  <p>В собственном контейнере песочницы приложения на вашем Mac: ваша калибровка, ваши настройки и история минут (сколько вы сидели прямо и сутулясь и сколько было напоминаний, по часам, за 400 дней). Оценка за сегодня и ваша неделя передаются собственному виджету Poisette. Удаление приложения стирает всё; в разделе «Настройки» ▸ «История» это можно сбросить в любой момент.</p>
+  <p>В собственном контейнере приложения на вашем Mac, iPhone или iPad: ваша калибровка, ваши настройки и история минут (сколько вы сидели прямо и сутулясь и сколько было напоминаний, по часам, за 400 дней). Оценка за сегодня и ваша неделя передаются собственным виджетам Poisette; на iPhone и iPad — через объект связки ключей, который могут читать только Poisette и её виджеты. Удаление приложения стирает всё, хотя iOS может сохранить этот небольшой объект связки ключей. Историю можно сбросить в любой момент: на Mac в разделе «Настройки» ▸ «История», на iPhone и iPad — кнопкой «Сбросить историю…» в «Настройках».</p>
 </section>
 
 <section class="card">
   <h2>Куда это уходит</h2>
-  <p>Никуда. <strong>У Poisette нет права на работу с сетью</strong>: сама macOS не позволит ей открыть сетевое подключение. Нет ни сервера, ни аналитики, ни учётной записи. Экспорт CSV попадает только туда, куда вы его сохраните.</p>
+  <p>Никуда. <strong>У Poisette нет права на работу с сетью</strong> на Mac: сама macOS не позволит ей открыть сетевое подключение. На iPhone и iPad в ней нет никакого сетевого кода. Её звуки для концентрации создаются на устройстве, а уведомления исходят от самого устройства. Нет ни сервера, ни аналитики, ни учётной записи. Экспорт CSV попадает только туда, куда вы его сохраните.</p>
 </section>
 
 <section class="card">
   <h2>Контакты</h2>
-  <p>Вопросы об этой политике или о чём-то ещё: <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20macOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a>.</p>
+  <p>Вопросы об этой политике или о чём-то ещё: <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20Mac%2C%20iPhone%20or%20iPad%3A%0A-%20macOS%20or%20iOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a>.</p>
 </section>
 
 <footer>
-<p>Poisette для macOS · <a href="./">Главная</a> · <a href="support.html">Поддержка</a> · <a href="privacy.html">Конфиденциальность</a> · <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20macOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a></p>
+<p>Poisette для Mac, iPhone и iPad · <a href="./">Главная</a> · <a href="support.html">Поддержка</a> · <a href="privacy.html">Конфиденциальность</a> · <a href="mailto:khangazun@gmail.com?subject=Poisette%20support&body=What%20happened%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A%0ADetails%20that%20help%3A%0A-%20Mac%2C%20iPhone%20or%20iPad%3A%0A-%20macOS%20or%20iOS%20version%3A%0A-%20Headphones%3A%0A-%20Poisette%20version%20%28Settings%2C%20About%29%3A%0A">khangazun@gmail.com</a></p>
 </footer>
 </main>
 </body>
