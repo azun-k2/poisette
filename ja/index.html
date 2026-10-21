@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="ja" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="デモ：良い姿勢と猫背の切り替え" data-good="背筋が伸びた良い姿勢" data-slouch="頭が前に傾いた状態：少し時間が経つとPoisetteがそっと知らせます">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">お試しください</p>
+      <p class="po-desc">Poisetteが何を検知するかご覧ください：</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">背筋を伸ばす</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">猫背にする</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">背筋が伸びた良い姿勢</p>
+    </div>
+    <p class="demo-note">シミュレーションです。実際のアプリはAirPods Pro、AirPods Max、Beats Fit Proのヘッドトラッキング機能を利用します。</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">macOS 14 Sonoma 以降、または iOS および iPadOS 17 以降と、ヘッドトラッキング対応のヘッドフォンが必要です。1 回の購入で Mac、iPhone、iPad のすべてで使えます。Poisette はよい姿勢を促すためのもので、医療機器ではありません。</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>カメラ式姿勢アプリとPoisetteの比較</h2>
+  <p class="section-lead">カメラを一切使わず、プライベートなデータを残さないスマートな姿勢習慣。</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>自分に向けられたカメラ</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>カメラの使用</strong></td>
+          <td>常にカメラで自分を監視させ続ける必要</td>
+          <td class="highlight-col"><strong>カメラ不使用：AirPods内蔵の頭部モーションセンサーを利用</strong></td>
+        </tr>
+        <tr>
+          <td><strong>使える場所</strong></td>
+          <td>デスクの前で、かつ部屋が明るい時のみ</td>
+          <td class="highlight-col"><strong>イヤホンを装着していればどこでも（暗い部屋でもOK）</strong></td>
+        </tr>
+        <tr>
+          <td><strong>誤検知と鬱陶しさ</strong></td>
+          <td>下を向くたびにすぐ警告音が鳴る</td>
+          <td class="highlight-col"><strong>適切な猶予時間：キーボードへの視線や会話の振り向きは無視</strong></td>
+        </tr>
+        <tr>
+          <td><strong>通話・ミーティング中</strong></td>
+          <td>大切な通話中でも容赦なく鳴り続ける</td>
+          <td class="highlight-col"><strong>通話中やイヤホンを外している間は自動で静かに</strong></td>
+        </tr>
+        <tr>
+          <td><strong>プライバシー</strong></td>
+          <td>部屋や顔の映像を解析させるリスク</td>
+          <td class="highlight-col"><strong>頭の動きデータはその場で判定され、一切保存されません</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>プライバシーについて手短に</h2>
   <p>Poisette にはネットワークへのアクセスも、アカウントも、トラッキングもありません。頭の動きは届いたその場で使われ、保存されることはありません。保存されるのは背筋を伸ばしていた時間と猫背だった時間（分単位）だけで、デバイスの中に置かれます。<a href="privacy.html">プライバシーポリシー</a>の全文にも、同じことをより詳しく記載しています。</p>

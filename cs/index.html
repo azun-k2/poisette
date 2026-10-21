@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="cs" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Ukázka: přepínejte mezi vzpřímeným a shrbeným sezením" data-good="Sedíte vzpřímeně" data-slouch="Hlava předkloněná: po krátké chvíli vás Poisette jemně upozorní">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Vyzkoušejte</p>
+      <p class="po-desc">Podívejte se, co Poisette rozpozná:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Sedět rovně</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Shrbit se</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Sedíte vzpřímeně</p>
+    </div>
+    <p class="demo-note">Simulace. Skutečná aplikace využívá snímání polohy hlavy v AirPods Pro, AirPods Max a Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Vyžaduje macOS 14 Sonoma nebo novější, nebo iOS a iPadOS 17 nebo novější, a sluchátka se sledováním pohybu hlavy. Jeden nákup platí pro Mac, iPhone i iPad. Poisette připomíná správné sezení, není to zdravotnický prostředek.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Aplikace s kamerou versus Poisette</h2>
+  <p class="section-lead">Trénink správného držení těla bez kamery a bez ukládání dat.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Vlastnost</th>
+          <th>Kamera mířící na vás</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kamera</strong></td>
+          <td>Vyžaduje neustále zapnutou kameru</td>
+          <td class="highlight-col"><strong>Žádná kamera: využívá sledování hlavy v AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Kde funguje</strong></td>
+          <td>Jen u stolu a při dobrém osvětlení</td>
+          <td class="highlight-col"><strong>Kdekoliv máte sluchátka, ve světle i ve tmě</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Rušení</strong></td>
+          <td>Upozornění při každém pouhém sklopení zraku</td>
+          <td class="highlight-col"><strong>Časová tolerance: pohledy na klávesnici a otočení hlavy ignoruje</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Při hovorech</strong></td>
+          <td>Ruší vás i během důležitých hovorů</td>
+          <td class="highlight-col"><strong>Zůstává tichá při hovoru nebo po vyndání sluchátek</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Soukromí</strong></td>
+          <td>Neustálé zpracovávání obrazu z kamery</td>
+          <td class="highlight-col"><strong>Data o pohybu hlavy se zpracují v reálném čase a nikam se neukládají</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Soukromí v jednom odstavci</h2>
   <p>Poisette nemá přístup k síti, žádný účet ani sledování. Pohyb vaší hlavy se použije hned, jak přijde, a nikdy se neukládá; uchovávají se jen minuty, kdy jste seděli zpříma a nahrbeně, a to ve vašem zařízení. Úplné <a href="privacy.html">zásady ochrany soukromí</a> říkají totéž podrobněji.</p>

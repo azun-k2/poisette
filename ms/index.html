@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="ms" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Demo: bertukar antara duduk tegak dan membongkok" data-good="Duduk tegak" data-slouch="Kepala condong ke hadapan: selepas tempoh bertenang, Poisette akan menegur anda">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Cuba sekarang</p>
+      <p class="po-desc">Lihat apa yang diperhatikan oleh Poisette:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Duduk tegak</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Membongkok</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Duduk tegak</p>
+    </div>
+    <p class="demo-note">Sebuah simulasi. Aplikasi sebenar membaca penjejakan kepala dalam AirPods Pro, AirPods Max dan Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Memerlukan macOS 14 Sonoma atau lebih baharu, atau iOS dan iPadOS 17 atau lebih baharu, dan fon kepala dengan penjejakan kepala. Satu pembelian meliputi Mac, iPhone dan iPad. Poisette ialah peringatan untuk duduk dengan betul, bukan peranti perubatan.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Peringatan berasaskan kamera berbanding Poisette</h2>
+  <p class="section-lead">Latihan postur tanpa kamera dan tanpa menyimpan apa-apa data.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Aspek</th>
+          <th>Kamera yang ditujukan kepada anda</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kamera</strong></td>
+          <td>Memerlukan kamera yang sentiasa memerhatikan anda</td>
+          <td class="highlight-col"><strong>Tiada kamera: menggunakan penjejakan kepala dalam AirPods anda</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Tempat berfungsi</strong></td>
+          <td>Hanya di meja kerja dan dalam pencahayaan yang baik</td>
+          <td class="highlight-col"><strong>Di mana-mana sahaja anda memakai fon kepala, cerah atau gelap</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Kerap mengganggu</strong></td>
+          <td>Menegur setiap kali anda memandang ke bawah seketika</td>
+          <td class="highlight-col"><strong>Tempoh toleransi pintar: menjeling ke papan kekunci tidak diganggu</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Semasa panggilan</strong></td>
+          <td>Terus berbunyi semasa anda sedang bercakap dalam panggilan</td>
+          <td class="highlight-col"><strong>Senyap semasa panggilan atau apabila anda menanggalkan fon kepala</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Privasi</strong></td>
+          <td>Video anda perlu dianalisis secara berterusan</td>
+          <td class="highlight-col"><strong>Pergerakan kepala diproses serta-merta dan tidak pernah disimpan</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Privasi dalam satu perenggan</h2>
   <p>Poisette tiada akses rangkaian, tiada akaun dan tiada penjejakan. Gerakan kepala anda digunakan sebaik sahaja diterima dan tidak pernah disimpan; hanya minit anda duduk tegak dan bongkok yang disimpan, pada peranti anda. <a href="privacy.html">Dasar privasi</a> penuh menyatakan perkara yang sama dengan lebih terperinci.</p>

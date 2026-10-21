@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="nl" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Demo: schakel tussen rechtop zitten en onderuitzakken" data-good="U zit rechtop" data-slouch="Hoofd naar voren gebogen: na een korte pauze geeft Poisette u een vriendelijk seintje">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Probeer het uit</p>
+      <p class="po-desc">Kijk wat Poisette opmerkt:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Rechtop zitten</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Onderuitzakken</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">U zit rechtop</p>
+    </div>
+    <p class="demo-note">Een simulatie. De echte app maakt gebruik van de hoofdbewegingssensoren in AirPods Pro, AirPods Max en Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Vereist macOS 14 Sonoma of nieuwer, of iOS en iPadOS 17 of nieuwer, en een koptelefoon met hoofdtracking. Met één aankoop heb je Mac, iPhone en iPad. Poisette is een geheugensteun om goed te zitten, geen medisch hulpmiddel.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Kameragebaseerde herinneringen vergeleken met Poisette</h2>
+  <p class="section-lead">Houdingstraining zonder camera en zonder gegevensopslag.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Een camera op u gericht</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Camera</strong></td>
+          <td>Vereist een camera die u continu in de gaten houdt</td>
+          <td class="highlight-col"><strong>Geen camera: benut de bewegingssensoren in uw AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Waar het werkt</strong></td>
+          <td>Alleen aan uw bureau en bij voldoende licht</td>
+          <td class="highlight-col"><strong>Overal waar u uw hoofdtelefoon draagt, in het licht en donker</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Gezeur</strong></td>
+          <td>Een melding elke keer dat u even naar beneden kijkt</td>
+          <td class="highlight-col"><strong>Slimme respijttijd: een blik op het toetsenbord wordt genegeerd</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Tijdens gesprekken</strong></td>
+          <td>Blijft storen terwijl u aan het bellen bent</td>
+          <td class="highlight-col"><strong>Stil tijdens gesprekken of wanneer u uw oortjes uitdoet</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Privacy</strong></td>
+          <td>Camerabeelden van u moeten doorlopend worden geanalyseerd</td>
+          <td class="highlight-col"><strong>Hoofdbewegingen worden live verwerkt en nooit bewaard</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Privacy in één alinea</h2>
   <p>Poisette heeft geen netwerktoegang, geen account en geen tracking. De beweging van je hoofd wordt gebruikt zodra die binnenkomt en nooit bewaard; alleen de minuten dat je rechtop en onderuitgezakt zat worden bijgehouden, op je apparaat. Het volledige <a href="privacy.html">privacybeleid</a> zegt hetzelfde, maar uitgebreider.</p>

@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="sv" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Demo: växla mellan att sitta upprätt och att kura ihop dig" data-good="Du sitter upprätt" data-slouch="Huvudet böjt framåt: efter en kort stund ger Poisette dig en varsam knuff">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Prova på</p>
+      <p class="po-desc">Se vad Poisette upptäcker:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Sitt upprätt</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Kura ihop dig</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Du sitter upprätt</p>
+    </div>
+    <p class="demo-note">En simulering. Riktiga appen läser av huvudspårningen i AirPods Pro, AirPods Max och Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Kräver macOS 14 Sonoma eller senare, eller iOS och iPadOS 17 eller senare, och hörlurar med huvudspårning. Ett köp gäller Mac, iPhone och iPad. Poisette är en påminnelse om att sitta bra, inte en medicinteknisk produkt.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Kamerabaserade påminnelser jämfört med Poisette</h2>
+  <p class="section-lead">Hållningsträning utan kamera och utan att lagra några personliga data.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Aspekt</th>
+          <th>En kamera riktad mot dig</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kamera</strong></td>
+          <td>Kräver en kamera som filmar dig oavbrutet</td>
+          <td class="highlight-col"><strong>Ingen kamera: använder huvudspårningen i dina AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Var det fungerar</strong></td>
+          <td>Bara vid skrivbordet och med bra belysning</td>
+          <td class="highlight-col"><strong>Överallt där du bär hörlurarna, i ljus och mörker</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Tjata</strong></td>
+          <td>Ger ifrån sig ljud varje gång du tittar ner en kort stund</td>
+          <td class="highlight-col"><strong>Vettig respit: blickar mot tangentbordet ignoreras</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Under samtal</strong></td>
+          <td>Fortsätter att störa medan du pratar i telefon</td>
+          <td class="highlight-col"><strong>Tyst under samtal eller när du tar av dig hörlurarna</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Integritet</strong></td>
+          <td>Videobilder av dig måste analyseras fortlöpande</td>
+          <td class="highlight-col"><strong>Huvudrörelser används bara i stunden och sparas aldrig</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Integritet i ett stycke</h2>
   <p>Poisette har ingen nätverksåtkomst, inget konto och ingen spårning. Huvudets rörelser används när de kommer in och sparas aldrig; bara minuterna du satt upprätt och hopsjunken sparas, på din enhet. Den fullständiga <a href="privacy.html">integritetspolicyn</a> säger samma sak mer utförligt.</p>

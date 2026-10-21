@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="uk" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Демо: перемикання між правильною поставою та сутулістю" data-good="Ви сидите рівно" data-slouch="Голова нахилена вперед: після короткої паузи Poisette м'яко нагадає вам">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Спробуйте</p>
+      <p class="po-desc">Подивіться, що фіксує Poisette:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Сидіти рівно</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Зсутулитись</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Ви сидите рівно</p>
+    </div>
+    <p class="demo-note">Наочна симуляція. Справжній додаток використовує датчики положення голови в AirPods Pro, AirPods Max та Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Потрібна macOS 14 Sonoma або новіша чи iOS та iPadOS 17 або новіші, а також навушники з відстеженням голови. Одна покупка діє на Mac, iPhone та iPad. Poisette нагадує сидіти правильно, але не є медичним виробом.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Додатки з камерою порівняно з Poisette</h2>
+  <p class="section-lead">Тренування правильної постави без увімкненої камери та без збору даних.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Аспект</th>
+          <th>Камера, спрямована на вас</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Камера</strong></td>
+          <td>Потребує увімкненої камери, яка постійно стежить за вами</td>
+          <td class="highlight-col"><strong>Без камери: використовує датчики стеження голови в AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Де працює</strong></td>
+          <td>Лише за робочим столом і при достатньому освітленні</td>
+          <td class="highlight-col"><strong>Скрізь, де на вас надіті навушники, у світлі чи в темряві</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Настирливість</strong></td>
+          <td>Сигналізує щоразу, коли ви бодай на мить подивитеся вниз</td>
+          <td class="highlight-col"><strong>Розумна затримка: швидкі погляди на клавіатуру ігноруються</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Під час дзвінків</strong></td>
+          <td>Продовжує видавати сигнали просто під час розмови</td>
+          <td class="highlight-col"><strong>Мовчить під час дзвінків або коли ви зняли навушники</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Приватність</strong></td>
+          <td>Відеопотік із вами повинен безперервно аналізуватися</td>
+          <td class="highlight-col"><strong>Рухи голови аналізуються в реальному часі й ніколи не зберігаються</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Конфіденційність в одному абзаці</h2>
   <p>Poisette не має доступу до мережі, облікового запису й стеження. Рухи вашої голови використовуються одразу, щойно надходять, і ніколи не зберігаються; зберігаються лише хвилини, проведені рівно й сутуло, — на вашому пристрої. Повна <a href="privacy.html">політика конфіденційності</a> каже те саме докладніше.</p>

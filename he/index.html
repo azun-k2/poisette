@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="he" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="הדגמה: מעבר בין ישיבה זקופה לרכינה קדימה" data-good="אתה יושב זקוף" data-slouch="ראש שפוף קדימה: לאחר השהיה קצרה, Poisette יזכיר לך בעדינות">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">נסה בעצמך</p>
+      <p class="po-desc">ראה מה Poisette מזהה:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">שב זקוף</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">רכון קדימה</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">אתה יושב זקוף</p>
+    </div>
+    <p class="demo-note">הדמיה בלבד. האפליקציה האמיתית קוראת את נתוני מעקב הראש ב-AirPods Pro, AirPods Max ו-Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">דורש macOS 14 Sonoma ומעלה, או iOS ו‑iPadOS 17 ומעלה, ואוזניות עם מעקב ראש. רכישה אחת מכסה Mac,‏ iPhone ו‑iPad. Poisette הוא תזכורת לשבת נכון, לא מכשיר רפואי.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>אפליקציות מבוססות מצלמה לעומת Poisette</h2>
+  <p class="section-lead">אימון יציבה ללא מצלמות וללא שמירת מידע אישי.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>היבט</th>
+          <th>מצלמה שמכוונת אליך</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>מצלמה</strong></td>
+          <td>דורש מצלמה שפועלת וצופה בך ללא הפסקה</td>
+          <td class="highlight-col"><strong>ללא מצלמה: משתמש במעקב הראש של ה-AirPods שלך</strong></td>
+        </tr>
+        <tr>
+          <td><strong>איפה זה עובד</strong></td>
+          <td>רק ליד שולחן העבודה ובתאורה טובה</td>
+          <td class="highlight-col"><strong>בכל מקום שבו אתה מרכיב את האוזניות, באור ובחושך</strong></td>
+        </tr>
+        <tr>
+          <td><strong>הפרעות מיותרות</strong></td>
+          <td>מתריע בכל פעם שאתה מביט לרגע למטה</td>
+          <td class="highlight-col"><strong>השהיית חסד חכמה: מבטים חטופים למקלדת אינם נספרים</strong></td>
+        </tr>
+        <tr>
+          <td><strong>בשיחות</strong></td>
+          <td>ממשיך להציק ולהשמיע צלילים בזמן שיחה</td>
+          <td class="highlight-col"><strong>שקט לחלוטין בזמן שיחות או כשאתה מוריד את האוזניות</strong></td>
+        </tr>
+        <tr>
+          <td><strong>פרטיות</strong></td>
+          <td>צילומי הווידאו שלך חייבים לעבור ניתוח</td>
+          <td class="highlight-col"><strong>תנועת הראש מעובדת ישירות ואינה נשמרת לעולם</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>פרטיות בפסקה אחת</h2>
   <p>ל‑Poisette אין גישה לרשת, אין חשבון ואין מעקב. תנועת הראש שלך משמשת ברגע שהיא מגיעה ולעולם לא נשמרת; נשמרות רק הדקות שבהן ישבת זקוף ושפוף, במכשיר שלך. <a href="privacy.html">מדיניות הפרטיות</a> המלאה אומרת את אותו הדבר בהרחבה.</p>

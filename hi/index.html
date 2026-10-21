@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="hi" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="डेमो: सीधे बैठने और झुकने के बीच स्विच करें" data-good="आप बिल्कुल सीधे बैठे हैं" data-slouch="सिर आगे की ओर झुका हुआ: थोड़ी देर बाद Poisette आपको धीरे से संकेत देगा">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">आज़माएँ</p>
+      <p class="po-desc">देखें Poisette क्या पहचानता है:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">सीधे बैठें</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">झुकें</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">आप बिल्कुल सीधे बैठे हैं</p>
+    </div>
+    <p class="demo-note">यह केवल एक सिमुलेशन है। असली ऐप AirPods Pro, AirPods Max और Beats Fit Pro में हेड ट्रैकिंग का उपयोग करता है।</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">macOS 14 Sonoma या बाद का वर्शन, या iOS और iPadOS 17 या बाद का, और हेड ट्रैकिंग वाले हेडफ़ोन ज़रूरी हैं। एक ही ख़रीदारी Mac, iPhone और iPad तीनों के लिए काफ़ी है। Poisette सही ढंग से बैठने की याद दिलाता है, यह कोई चिकित्सा उपकरण नहीं है।</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>कैमरा-आधारित ऐप्स बनाम Poisette</h2>
+  <p class="section-lead">बिना किसी कैमरे और बिना डेटा संग्रह के बेहतर शारीरिक मुद्रा।</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>पहलू</th>
+          <th>आपकी ओर लगा हुआ कैमरा</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>कैमरा</strong></td>
+          <td>लगातार आप पर नज़र रखने वाले कैमरे की आवश्यकता होती है</td>
+          <td class="highlight-col"><strong>कोई कैमरा नहीं: आपके AirPods में हेड ट्रैकिंग का उपयोग करता है</strong></td>
+        </tr>
+        <tr>
+          <td><strong>कहाँ काम करता है</strong></td>
+          <td>केवल डेस्क पर और अच्छी रोशनी में</td>
+          <td class="highlight-col"><strong>जहाँ भी आप हेडफ़ोन पहनते हैं, उजाले में या अंधेरे में</strong></td>
+        </tr>
+        <tr>
+          <td><strong>बार-बार टोकना</strong></td>
+          <td>नीचे देखते ही तुरंत टोकने लगता है</td>
+          <td class="highlight-col"><strong>स्मार्ट ग्रेस टाइम: कीबोर्ड पर नज़र डालने को नज़रअंदाज़ करता है</strong></td>
+        </tr>
+        <tr>
+          <td><strong>कॉल के दौरान</strong></td>
+          <td>कॉल के दौरान भी आवाज़ करके परेशान करता है</td>
+          <td class="highlight-col"><strong>हेडफ़ोन निकालने पर या कॉल के दौरान पूरी तरह शांत</strong></td>
+        </tr>
+        <tr>
+          <td><strong>गोपनीयता</strong></td>
+          <td>आपके वीडियो का लगातार विश्लेषण किया जाता है</td>
+          <td class="highlight-col"><strong>सिर की गति का केवल उसी क्षण उपयोग होता है, कभी संग्रहीत नहीं होता</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>एक पैराग्राफ़ में गोपनीयता</h2>
   <p>Poisette के पास कोई नेटवर्क एक्सेस नहीं, कोई खाता नहीं और कोई ट्रैकिंग नहीं। आपके सिर की हरकत आते ही इस्तेमाल होती है और कभी सहेजी नहीं जाती; सिर्फ़ वे मिनट रखे जाते हैं जब आप सीधे और झुककर बैठे, आपके डिवाइस पर। पूरी <a href="privacy.html">गोपनीयता नीति</a> यही बात विस्तार से कहती है।</p>

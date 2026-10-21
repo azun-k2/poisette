@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="hr" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Prikaz: prebacujte između uspravnog sjedenja i pogrbljenosti" data-good="Sjedite uspravno" data-slouch="Glava nagnuta prema naprijed: nakon kratke odgode Poisette vas podsjeća">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Isprobajte</p>
+      <p class="po-desc">Pogledajte što Poisette primjećuje:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Uspravno sjedenje</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Pogrbljenost</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Sjedite uspravno</p>
+    </div>
+    <p class="demo-note">Simulacija. Stvarna aplikacija očitava praćenje glave na AirPods Pro, AirPods Max i Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Zahtijeva macOS 14 Sonoma ili noviji, ili iOS i iPadOS 17 ili noviji, te slušalice s praćenjem glave. Jedna kupnja vrijedi za Mac, iPhone i iPad. Poisette je podsjetnik da sjediš pravilno, a ne medicinski uređaj.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Podsjetnici temeljeni na kameri u usporedbi s Poisetteom</h2>
+  <p class="section-lead">Učenje pravilnog držanja bez kamere i bez pohrane podataka.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Značajka</th>
+          <th>Kamera usmjerena prema vama</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kamera</strong></td>
+          <td>Zahtijeva kameru koja vas stalno promatra</td>
+          <td class="highlight-col"><strong>Bez kamere: koristi senzore glave u AirPods slušalicama</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Gdje radi</strong></td>
+          <td>Samo za radnim stolom i pri dobrom svjetlu</td>
+          <td class="highlight-col"><strong>Gdje god nosite slušalice, na svjetlu ili u mraku</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Učestala upozorenja</strong></td>
+          <td>Upozorava vas svaki put kada pogledate dolje</td>
+          <td class="highlight-col"><strong>Pametna odgoda: kratki pogledi na tipkovnicu se zanemaruju</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Tijekom poziva</strong></td>
+          <td>Nastavlja vas ometati tijekom razgovora</td>
+          <td class="highlight-col"><strong>Tih kada skinete slušalice ili dok razgovarate na pozivu</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Privatnost</strong></td>
+          <td>Vaša video slika mora se neprestano analizirati</td>
+          <td class="highlight-col"><strong>Pokreti glave obrađuju se u trenutku i nikada se ne spremaju</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Privatnost u jednom odlomku</h2>
   <p>Poisette nema pristup mreži, nema račun ni praćenje. Pokreti tvoje glave koriste se čim stignu i nikad se ne spremaju; na tvom uređaju čuvaju se samo minute provedene uspravno i pogrbljeno. Potpuna <a href="privacy.html">pravila privatnosti</a> kažu isto, opširnije.</p>

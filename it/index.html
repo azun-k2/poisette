@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="it" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Demo: passa dalla postura corretta a quella curva" data-good="Schiena dritta" data-slouch="Testa china in avanti: dopo un breve intervallo, Poisette ti avviserà">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Fai una prova</p>
+      <p class="po-desc">Guarda cosa rileva Poisette:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Schiena dritta</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Testa china</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Schiena dritta</p>
+    </div>
+    <p class="demo-note">Una simulazione. L'app reale sfrutta il tracciamento della testa di AirPods Pro, AirPods Max e Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Richiede macOS 14 Sonoma o versioni successive, oppure iOS e iPadOS 17 o versioni successive, e cuffie con rilevamento della testa. Un solo acquisto vale per Mac, iPhone e iPad. Poisette è un promemoria per sedersi bene, non un dispositivo medico.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Promemoria tramite videocamera rispetto a Poisette</h2>
+  <p class="section-lead">Migliora la postura senza videocamere accese e senza salvare alcun dato.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Aspetto</th>
+          <th>Una telecamera puntata su di te</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Telecamera</strong></td>
+          <td>Richiede una videocamera costantemente attiva</td>
+          <td class="highlight-col"><strong>Nessuna telecamera: sfrutta i sensori di movimento delle AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Dove funziona</strong></td>
+          <td>Solo alla scrivania e con una buona illuminazione</td>
+          <td class="highlight-col"><strong>Ovunque indossi le cuffie, con la luce o al buio</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Insistenza</strong></td>
+          <td>Suona ogni volta che abbassi lo sguardo per un istante</td>
+          <td class="highlight-col"><strong>Margine intelligente: le occhiate alla tastiera vengono ignorate</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Durante le chiamate</strong></td>
+          <td>Continua a disturbare mentre stai parlando</td>
+          <td class="highlight-col"><strong>Silenzioso durante le chiamate o quando togli le cuffie</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Privacy</strong></td>
+          <td>Le immagini video devono essere analizzate continuamente</td>
+          <td class="highlight-col"><strong>I movimenti della testa sono elaborati al volo e mai memorizzati</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>La privacy in un paragrafo</h2>
   <p>Poisette non ha accesso alla rete, né account, né tracciamento. Il movimento della testa viene usato appena arriva e mai salvato; vengono conservati solo i minuti in cui sei stato dritto o curvo, sul tuo dispositivo. L’<a href="privacy.html">informativa sulla privacy</a> completa dice la stessa cosa più nel dettaglio.</p>

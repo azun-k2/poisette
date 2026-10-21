@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="de" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Demo: Wechseln Sie zwischen aufrechtem Sitzen und Lümmeln" data-good="Aufrechte Haltung" data-slouch="Kopf nach vorne gebeugt: Nach einer kurzen Schonfrist erinnert Poisette Sie">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Ausprobieren</p>
+      <p class="po-desc">Sehen Sie, was Poisette bemerkt:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Aufrecht sitzen</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Kopf hängen lassen</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Aufrechte Haltung</p>
+    </div>
+    <p class="demo-note">Eine Simulation. Die echte App nutzt die Kopferfassung in AirPods Pro, AirPods Max und Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Erfordert macOS 14 Sonoma oder neuer bzw. iOS und iPadOS 17 oder neuer sowie Kopfhörer mit Kopferfassung. Ein Kauf gilt für Mac, iPhone und iPad. Poisette erinnert an gutes Sitzen und ist kein Medizinprodukt.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Kamerabasierte Haltungstrainer im Vergleich zu Poisette</h2>
+  <p class="section-lead">Haltungscoaching ganz ohne Kamera und ohne Speicherung persönlicher Daten.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Bereich</th>
+          <th>Eine auf Sie gerichtete Kamera</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kamera</strong></td>
+          <td>Erfordert eine Kamera, die Sie ununterbrochen beobachtet</td>
+          <td class="highlight-col"><strong>Keine Kamera: nutzt die Bewegungssensoren Ihrer AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Einsatzort</strong></td>
+          <td>Nur am Schreibtisch und bei gutem Licht</td>
+          <td class="highlight-col"><strong>Überall, wo Sie Kopfhörer tragen – im Hellen wie im Dunkeln</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Ständige Hinweise</strong></td>
+          <td>Schlägt bei jedem kurzen Blick nach unten sofort Alarm</td>
+          <td class="highlight-col"><strong>Intelligente Karenzzeit: Blicke auf die Tastatur werden ignoriert</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Bei Telefonaten</strong></td>
+          <td>Unterbricht Sie auch während wichtiger Besprechungen</td>
+          <td class="highlight-col"><strong>Lautlos bei Anrufen oder wenn Sie die Kopfhörer absetzen</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Privatsphäre</strong></td>
+          <td>Videobilder von Ihnen müssen analysiert werden</td>
+          <td class="highlight-col"><strong>Kopfbewegungen werden live verarbeitet und niemals gespeichert</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Datenschutz in einem Absatz</h2>
   <p>Poisette hat keinen Netzwerkzugriff, kein Konto und kein Tracking. Die Bewegung Ihres Kopfes wird verwendet, sobald sie eintrifft, und nie gespeichert; nur die Minuten, in denen Sie aufrecht und zusammengesackt saßen, werden aufbewahrt, auf Ihrem Gerät. Die vollständige <a href="privacy.html">Datenschutzerklärung</a> sagt dasselbe ausführlicher.</p>

@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="es" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Demostración: cambia entre sentarte erguido y encorvarte" data-good="Postura erguida" data-slouch="Cabeza inclinada hacia delante: tras un breve margen, Poisette te avisará con suavidad">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Pruébalo</p>
+      <p class="po-desc">Descubre lo que Poisette percibe:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Sentarse erguido</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Encorvarse</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Postura erguida</p>
+    </div>
+    <p class="demo-note">Una simulación. La app real aprovecha el seguimiento de cabeza de los AirPods Pro, AirPods Max y Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Requiere macOS 14 Sonoma o posterior, o iOS y iPadOS 17 o posterior, y auriculares con seguimiento de la cabeza. Una sola compra sirve para Mac, iPhone y iPad. Poisette es un recordatorio para sentarte bien, no un dispositivo médico.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Recordatorios basados en cámara frente a Poisette</h2>
+  <p class="section-lead">Entrena tu postura sin cámaras encendidas y sin guardar nada.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>Una cámara apuntándote</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Cámara</strong></td>
+          <td>Necesita una cámara vigilándote constantemente</td>
+          <td class="highlight-col"><strong>Sin cámara: utiliza los sensores de movimiento de tus AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Dónde funciona</strong></td>
+          <td>Solo frente al escritorio y con buena luz</td>
+          <td class="highlight-col"><strong>Dondequiera que lleves los auriculares, con luz o a oscuras</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Insistencia</strong></td>
+          <td>Un aviso cada vez que bajas la vista un segundo</td>
+          <td class="highlight-col"><strong>Margen inteligente: ignora miradas al teclado o giros para hablar</strong></td>
+        </tr>
+        <tr>
+          <td><strong>En llamadas</strong></td>
+          <td>Sigue sonando mientras estás hablando con alguien</td>
+          <td class="highlight-col"><strong>En silencio si te quitas los auriculares o estás en una llamada</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Privacidad</strong></td>
+          <td>Requiere procesar vídeo de tu espacio privado</td>
+          <td class="highlight-col"><strong>El movimiento se procesa al instante y jamás se guarda</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>La privacidad en un párrafo</h2>
   <p>Poisette no tiene acceso a la red, ni cuenta, ni rastreo. El movimiento de tu cabeza se usa a medida que llega y nunca se guarda; solo se conservan los minutos que pasaste erguido y encorvado, en tu dispositivo. La <a href="privacy.html">política de privacidad</a> completa dice lo mismo con más detalle.</p>

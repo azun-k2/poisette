@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="fr" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Démo : basculez entre posture droite et avachie" data-good="Vous vous tenez droit" data-slouch="Tête penchée en avant : après un court délai, Poisette vous rappelle à l'ordre">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Essayez</p>
+      <p class="po-desc">Regardez ce que Poisette perçoit :</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Se tenir droit</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">S'avachir</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Vous vous tenez droit</p>
+    </div>
+    <p class="demo-note">Une simulation. La vraie app utilise le suivi de la tête des AirPods Pro, AirPods Max et Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Nécessite macOS 14 Sonoma ou version ultérieure, ou iOS et iPadOS 17 ou version ultérieure, ainsi que des écouteurs avec suivi de la tête. Un seul achat couvre Mac, iPhone et iPad. Poisette est un rappel pour bien vous tenir, pas un dispositif médical.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Rappels par caméra face à Poisette</h2>
+  <p class="section-lead">Un coaching postural sans aucune caméra et sans conserver la moindre donnée.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Une caméra braquée sur vous</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Caméra</strong></td>
+          <td>Exige une caméra qui vous observe en permanence</td>
+          <td class="highlight-col"><strong>Aucune caméra : utilise les capteurs de vos AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Où cela fonctionne</strong></td>
+          <td>Seulement à votre bureau et sous un bon éclairage</td>
+          <td class="highlight-col"><strong>Partout où vous portez vos écouteurs, dans la lumière comme dans le noir</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Rappels intempestifs</strong></td>
+          <td>Une alerte à chaque fois que vous baissez les yeux</td>
+          <td class="highlight-col"><strong>Délai de grâce : les coups d'œil au clavier sont ignorés</strong></td>
+        </tr>
+        <tr>
+          <td><strong>En appel</strong></td>
+          <td>Continue de biper pendant vos réunions ou appels</td>
+          <td class="highlight-col"><strong>Silencieux lors des appels ou dès que vous retirez vos écouteurs</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Vie privée</strong></td>
+          <td>Votre flux vidéo doit être analysé en permanence</td>
+          <td class="highlight-col"><strong>Les mouvements de tête sont traités en direct et jamais stockés</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>La confidentialité en un paragraphe</h2>
   <p>Poisette n’a ni accès au réseau, ni compte, ni suivi. Le mouvement de votre tête est utilisé au moment où il arrive et n’est jamais enregistré ; seules les minutes passées droit et avachi sont conservées, sur votre appareil. La <a href="privacy.html">politique de confidentialité</a> complète dit la même chose plus en détail.</p>

@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="nb" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Demo: bytt mellom å sitte rankt og lut" data-good="Du sitter rankt" data-slouch="Hodet bøyd forover: etter en kort pause gir Poisette deg et varsomt puff">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Prøv det</p>
+      <p class="po-desc">Se hva Poisette oppdager:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Sitt rankt</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Lut ryggen</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Du sitter rankt</p>
+    </div>
+    <p class="demo-note">En simulering. Selve appen leser hodesporingen i AirPods Pro, AirPods Max og Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Krever macOS 14 Sonoma eller nyere, eller iOS og iPadOS 17 eller nyere, og hodetelefoner med hodesporing. Ett kjøp gjelder Mac, iPhone og iPad. Poisette er en påminnelse om å sitte godt, ikke medisinsk utstyr.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Kamerabaserte påminnelser sammenlignet med Poisette</h2>
+  <p class="section-lead">Holdningstrening helt uten kamera og uten lagring av data.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Aspekt</th>
+          <th>Et kamera rettet mot deg</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kamera</strong></td>
+          <td>Krever et kamera som overvåker deg hele tiden</td>
+          <td class="highlight-col"><strong>Uten kamera: bruker hodesporingen i dine AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Hvor det virker</strong></td>
+          <td>Kun ved skrivebordet med god belysning</td>
+          <td class="highlight-col"><strong>Hvor som helst du har på hodetelefoner, i lys eller mørke</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Masing</strong></td>
+          <td>Gir lyd hver eneste gang du ser ned et øyeblikk</td>
+          <td class="highlight-col"><strong>Smarte pauser: blikk på tastaturet og samtaler ignoreres</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Under samtaler</strong></td>
+          <td>Fortsetter å mase mens du snakker i telefonen</td>
+          <td class="highlight-col"><strong>Stille under samtaler eller når du tar av hodetelefonene</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Personvern</strong></td>
+          <td>Videoopptak av deg må kontinuerlig analyseres</td>
+          <td class="highlight-col"><strong>Hodebevegelse behandles direkte og lagres aldri</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Personvern i ett avsnitt</h2>
   <p>Poisette har ingen nettverkstilgang, ingen konto og ingen sporing. Hodets bevegelser brukes etter hvert som de kommer inn, og lagres aldri; bare minuttene du satt rett og sammensunket, tas vare på, på enheten din. Den fullstendige <a href="privacy.html">personvernerklæringen</a> sier det samme mer utfyllende.</p>

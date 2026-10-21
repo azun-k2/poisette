@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="hu" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Bemutató: váltson egyenes és görnyedt testtartás között" data-good="Egyenesen ül" data-slouch="Előredöntött fej: kis türelmi idő után a Poisette figyelmezteti">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Próbálja ki</p>
+      <p class="po-desc">Nézze meg, mit vesz észre a Poisette:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Egyenes tartás</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Görnyedés</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Egyenesen ül</p>
+    </div>
+    <p class="demo-note">Szimuláció. Az igazi app az AirPods Pro, AirPods Max és Beats Fit Pro fejkövetését használja.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">macOS 14 Sonoma vagy újabb, illetve iOS és iPadOS 17 vagy újabb, valamint fejkövetéssel rendelkező fejhallgató szükséges. Egy vásárlás lefedi a Macet, az iPhone-t és az iPadet. A Poisette emlékeztető a helyes üléshez, nem orvostechnikai eszköz.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Kamerás figyelmeztetők a Poisette-tel szemben</h2>
+  <p class="section-lead">Tartásjavítás kamera nélkül, személyes adatok rögzítése nélkül.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Szempont</th>
+          <th>Önre irányított kamera</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kamera</strong></td>
+          <td>Folyamatosan figyelő kamerát igényel</td>
+          <td class="highlight-col"><strong>Nincs kamera: az AirPods fejkövető szenzorait használja</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Hol működik</strong></td>
+          <td>Csak az íróasztalnál és jó megvilágítás mellett</td>
+          <td class="highlight-col"><strong>Bárhol, ahol fülhallgatót visel, fényben vagy sötétben</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Folyamatos zavarás</strong></td>
+          <td>Minden egyes lefelé pillantásnál figyelmeztet</td>
+          <td class="highlight-col"><strong>Intelligens türelmi idő: a billentyűzetre vetett pillantást figyelmen kívül hagyja</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Hívások közben</strong></td>
+          <td>Hívások alatt is folyamatosan hangjelzést ad</td>
+          <td class="highlight-col"><strong>Csendes hívás közben, vagy ha leveszi a fülhallgatót</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Adatvédelem</strong></td>
+          <td>Folyamatos videofelvétel-elemzést igényel</td>
+          <td class="highlight-col"><strong>A fej mozgását csak az adott pillanatban használja, nem menti el</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Adatvédelem egy bekezdésben</h2>
   <p>A Poisette-nek nincs hálózati hozzáférése, nincs fiók és nincs követés. A fejed mozgását beérkezéskor felhasználja, és soha nem tárolja; csak az egyenesen és görnyedten töltött perceket őrzi meg, az eszközödön. A teljes <a href="privacy.html">adatvédelmi irányelvek</a> ugyanezt mondják el részletesebben.</p>

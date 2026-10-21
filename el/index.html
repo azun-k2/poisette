@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="el" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Επίδειξη: εναλλαγή μεταξύ ορθής στάσης και καμπούρας" data-good="Κάθεστε σε ορθή στάση" data-slouch="Κεφάλι σκυμμένο μπροστά: μετά από μια σύντομη αναμονή, το Poisette θα σας ειδοποιήσει">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Δοκιμάστε το</p>
+      <p class="po-desc">Δείτε τι παρατηρεί το Poisette:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Ορθή στάση</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Καμπούρα</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Κάθεστε σε ορθή στάση</p>
+    </div>
+    <p class="demo-note">Μια προσομοίωση. Η πραγματική εφαρμογή διαβάζει την παρακολούθηση κεφαλής στα AirPods Pro, AirPods Max και Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Απαιτεί macOS 14 Sonoma ή νεότερο, ή iOS και iPadOS 17 ή νεότερο, και ακουστικά με ανίχνευση κεφαλιού. Μία αγορά καλύπτει Mac, iPhone και iPad. Το Poisette είναι μια υπενθύμιση για σωστό κάθισμα, όχι ιατροτεχνολογικό προϊόν.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Εφαρμογές με κάμερα έναντι του Poisette</h2>
+  <p class="section-lead">Βελτίωση στάσης χωρίς κάμερα και χωρίς αποθήκευση δεδομένων.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Χαρακτηριστικό</th>
+          <th>Κάμερα στραμμένη πάνω σας</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Κάμερα</strong></td>
+          <td>Απαιτεί μια κάμερα να σας παρακολουθεί συνεχώς</td>
+          <td class="highlight-col"><strong>Χωρίς κάμερα: χρησιμοποιεί τους αισθητήρες κεφαλής των AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Πού λειτουργεί</strong></td>
+          <td>Μόνο στο γραφείο και με καλό φωτισμό</td>
+          <td class="highlight-col"><strong>Όπου φοράτε τα ακουστικά σας, στο φως ή στο σκοτάδι</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Ενοχλητικές ειδοποιήσεις</strong></td>
+          <td>Σας ενοχλεί κάθε φορά που κοιτάτε κάτω</td>
+          <td class="highlight-col"><strong>Χρόνος αναμονής: αγνοεί ματιές στο πληκτρολόγιο και συνομιλίες</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Σε κλήσεις</strong></td>
+          <td>Συνεχίζει να χτυπά ακόμα και σε κλήσεις</td>
+          <td class="highlight-col"><strong>Αθόρυβο όταν βγάζετε τα ακουστικά ή κατά τη διάρκεια κλήσεων</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Ιδιωτικότητα</strong></td>
+          <td>Ανάλυση συνεχούς ροής βίντεο</td>
+          <td class="highlight-col"><strong>Η κίνηση κεφαλής χρησιμοποιείται στιγμιαία και δεν αποθηκεύεται ποτέ</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Το απόρρητο σε μία παράγραφο</h2>
   <p>Το Poisette δεν έχει πρόσβαση στο δίκτυο, λογαριασμό ή παρακολούθηση. Η κίνηση του κεφαλιού σου χρησιμοποιείται τη στιγμή που φτάνει και δεν αποθηκεύεται ποτέ· κρατιούνται μόνο τα λεπτά που κάθισες ίσια και καμπουριαστά, στη συσκευή σου. Η πλήρης <a href="privacy.html">πολιτική απορρήτου</a> λέει τα ίδια πιο αναλυτικά.</p>

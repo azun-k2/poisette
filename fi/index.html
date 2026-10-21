@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="fi" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Esittely: vaihda suoran ja lysähtäneen istuma-asennon välillä" data-good="Istut suorassa" data-slouch="Pää painuu eteen: pienen viiveen jälkeen Poisette muistuttaa sinua">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Kokeile</p>
+      <p class="po-desc">Katso mitä Poisette huomaa:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Istu suorassa</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Lysähdä</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Istut suorassa</p>
+    </div>
+    <p class="demo-note">Simulaatio. Oikea sovellus lukee pään seurantaa AirPods Pro-, AirPods Max- ja Beats Fit Pro -kuulokkeista.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Vaatii macOS 14 Sonoman tai uudemman tai iOS:n ja iPadOS:n 17 tai uudemman sekä kuulokkeet, joissa on pään seuranta. Yksi osto kattaa Macin, iPhonen ja iPadin. Poisette on muistutus hyvästä istuma-asennosta, ei lääkinnällinen laite.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Kameraan perustuvat muistuttajat vastaan Poisette</h2>
+  <p class="section-lead">Ryhtivalmennusta ilman kameraa ja ilman tietojen tallentamista.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Ominaisuus</th>
+          <th>Sinua kohti osoittava kamera</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kamera</strong></td>
+          <td>Vaatii kameran tarkkailemaan sinua jatkuvasti</td>
+          <td class="highlight-col"><strong>Ei kameraa: käyttää AirPods-kuulokkeidesi päänseurantaa</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Missä se toimii</strong></td>
+          <td>Vain työpöydän ääressä hyvässä valaistuksessa</td>
+          <td class="highlight-col"><strong>Missä vain käytät kuulokkeita, valossa tai pimeässä</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Häiritsevyys</strong></td>
+          <td>Muistutus joka kerta, kun katsot vähänkin alaspäin</td>
+          <td class="highlight-col"><strong>Harkinta-aika: näppäimistöön vilkaisut jätetään huomiotta</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Puhelut</strong></td>
+          <td>Jatkaa hälyttämistä kesken tärkeän puhelun</td>
+          <td class="highlight-col"><strong>Hiljainen puheluiden aikana ja kun otat kuulokkeet pois</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Yksityisyys</strong></td>
+          <td>Videokuvaa sinusta täytyy analysoida jatkuvasti</td>
+          <td class="highlight-col"><strong>Pään liikettä käytetään reaaliajassa eikä sitä tallenneta koskaan</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Tietosuoja yhdellä kappaleella</h2>
   <p>Poisettella ei ole verkkoyhteyttä, tiliä eikä seurantaa. Pään liikettä käytetään sitä mukaa kuin se saapuu, eikä sitä koskaan tallenneta; vain minuutit, jotka istuit ryhdissä ja lysähtäneenä, säilytetään, laitteellasi. Koko <a href="privacy.html">tietosuojakäytäntö</a> kertoo saman laajemmin.</p>

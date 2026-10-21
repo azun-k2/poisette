@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="tr" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Demo: dik oturma ve kambur durma arasında geçiş yapın" data-good="Dik oturuyorsunuz" data-slouch="Baş öne eğildi: kısa bir tolerans süresinden sonra Poisette sizi uyarır">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Deneyin</p>
+      <p class="po-desc">Poisette'in neyi fark ettiğini görün:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Dik otur</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Kambur dur</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Dik oturuyorsunuz</p>
+    </div>
+    <p class="demo-note">Bir simülasyondur. Gerçek uygulama AirPods Pro, AirPods Max ve Beats Fit Pro'daki kafa takibi sensörlerini kullanır.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">macOS 14 Sonoma veya üstü ya da iOS ve iPadOS 17 veya üstü ve kafa takibi olan kulaklıklar gerekir. Tek satın alma Mac, iPhone ve iPad’i kapsar. Poisette iyi oturmak için bir hatırlatıcıdır, tıbbi bir cihaz değildir.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Kamera tabanlı hatırlatıcılar ile Poisette karşılaştırması</h2>
+  <p class="section-lead">Kamera açmadan ve hiçbir kişisel veri kaydetmeden doğru duruş eğitimi.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Özellik</th>
+          <th>Size yöneltilmiş bir kamera</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kamera</strong></td>
+          <td>Sizi sürekli izleyen açık bir kamera gerektirir</td>
+          <td class="highlight-col"><strong>Kamera yok: AirPods kulaklığınızın kafa takibini kullanır</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Çalıştığı yer</strong></td>
+          <td>Yalnızca çalışma masasında ve iyi aydınlatılmış ortamda</td>
+          <td class="highlight-col"><strong>Kulaklığı taktığınız her yerde, aydınlıkta veya karanlıkta</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Gereksiz uyarılar</strong></td>
+          <td>Aşağıya baktığınız her an sizi sürekli uyarır</td>
+          <td class="highlight-col"><strong>Akıllı tolerans süresi: klavyeye kısa bakışlar dikkate alınmaz</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Görüşmelerde</strong></td>
+          <td>Telefonla konuşurken bile uyarı sesi vermeyi sürdürür</td>
+          <td class="highlight-col"><strong>Görüşme yaparken veya kulaklığı çıkardığınızda otomatik sessiz</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Gizlilik</strong></td>
+          <td>Kamera görüntünüzün sürekli analiz edilmesi gerekir</td>
+          <td class="highlight-col"><strong>Kafa hareketleri anlık olarak işlenir ve asla saklanmaz</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Tek paragrafta gizlilik</h2>
   <p>Poisette’in ağ erişimi, hesabı ve izlemesi yoktur. Başının hareketi geldiği anda kullanılır ve asla saklanmaz; yalnızca dik ve kambur oturduğun dakikalar cihazında tutulur. <a href="privacy.html">Gizlilik politikasının</a> tamamı aynı şeyi daha uzun anlatır.</p>

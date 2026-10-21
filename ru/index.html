@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="ru" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Демо: переключение между прямой осанкой и сутулостью" data-good="Вы сидите с прямой спиной" data-slouch="Голова наклонена вперед: после небольшой задержки Poisette мягко напомнит вам">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Попробуйте</p>
+      <p class="po-desc">Посмотрите, на что обращает внимание Poisette:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Сидеть ровно</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Ссутулиться</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Вы сидите с прямой спиной</p>
+    </div>
+    <p class="demo-note">Наглядная симуляция. Реальное приложение считывает положение головы через датчики в AirPods Pro, AirPods Max и Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">Требуется macOS 14 Sonoma или новее либо iOS и iPadOS 17 или новее, а также наушники с отслеживанием головы. Одна покупка действует на Mac, iPhone и iPad. Poisette напоминает сидеть правильно, но не является медицинским изделием.</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>Напоминания через веб-камеру в сравнении с Poisette</h2>
+  <p class="section-lead">Контроль правильной осанки без включенной камеры и без сбора данных.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Параметр</th>
+          <th>Камера, направленная на вас</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Камера</strong></td>
+          <td>Требует постоянно включенной камеры, смотрящей на вас</td>
+          <td class="highlight-col"><strong>Без камеры: использует датчики положения головы в ваших AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Где работает</strong></td>
+          <td>Только за рабочим столом и при хорошем свете</td>
+          <td class="highlight-col"><strong>Везде, где на вас надеты наушники — на свету или в темноте</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Навязчивость</strong></td>
+          <td>Сигналит каждый раз, когда вы опускаете взгляд</td>
+          <td class="highlight-col"><strong>Умная пауза: быстрые взгляды на клавиатуру игнорируются</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Во время звонков</strong></td>
+          <td>Продолжает звенеть прямо во время важного разговора</td>
+          <td class="highlight-col"><strong>Молчит во время звонков и когда наушники сняты</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Приватность</strong></td>
+          <td>Видеопоток с вами должен непрерывно обрабатываться</td>
+          <td class="highlight-col"><strong>Движения головы обрабатываются в моменте и нигде не сохраняются</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>Конфиденциальность в одном абзаце</h2>
   <p>У Poisette нет доступа к сети, учётной записи и отслеживания. Движения вашей головы используются по мере поступления и никогда не сохраняются; хранятся только минуты, проведённые прямо и сутулясь, — на вашем устройстве. Полная <a href="privacy.html">политика конфиденциальности</a> говорит то же самое подробнее.</p>

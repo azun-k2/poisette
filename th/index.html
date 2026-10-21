@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="th" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="เดโม: สลับระหว่างการนั่งตัวตรงกับการนั่งหลังค่อม" data-good="คุณกำลังนั่งตัวตรง" data-slouch="ศีรษะก้มไปข้างหน้า: หลังจากผ่านไปครู่หนึ่ง Poisette จะสะกิดเตือนคุณ">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">ลองทดสอบดู</p>
+      <p class="po-desc">ดูสิ่งที่ Poisette ตรวจจับได้:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">นั่งตัวตรง</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">นั่งหลังค่อม</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">คุณกำลังนั่งตัวตรง</p>
+    </div>
+    <p class="demo-note">การจำลองภาพ แอปจริงจะอ่านเซ็นเซอร์ตรวจจับการเคลื่อนไหวของศีรษะใน AirPods Pro, AirPods Max และ Beats Fit Pro</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">ต้องใช้ macOS 14 Sonoma ขึ้นไป หรือ iOS และ iPadOS 17 ขึ้นไป และหูฟังที่มีการติดตามศีรษะ ซื้อครั้งเดียวใช้ได้ทั้ง Mac, iPhone และ iPad Poisette เป็นตัวช่วยเตือนให้นั่งอย่างถูกท่า ไม่ใช่อุปกรณ์ทางการแพทย์</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>แอปเตือนด้วยกล้อง เทียบกับ Poisette</h2>
+  <p class="section-lead">ฝึกบุคลิกภาพโดยไม่ต้องเปิดกล้องและไม่บันทึกข้อมูลส่วนตัวใดๆ</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>ด้าน</th>
+          <th>กล้องที่ส่องมาที่คุณ</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>การใช้กล้อง</strong></td>
+          <td>ต้องมีกล้องคอยจับตาดูคุณตลอดเวลา</td>
+          <td class="highlight-col"><strong>ไม่ต้องใช้กล้อง: ใช้เซ็นเซอร์ติดตามศีรษะใน AirPods ของคุณ</strong></td>
+        </tr>
+        <tr>
+          <td><strong>สถานที่ทำงาน</strong></td>
+          <td>เฉพาะที่โต๊ะทำงานและมีแสงสว่างเพียงพอ</td>
+          <td class="highlight-col"><strong>ทุกที่ที่คุณสวมหูฟัง ทั้งในที่สว่างหรือในที่มืดสนิท</strong></td>
+        </tr>
+        <tr>
+          <td><strong>การเตือนรบกวน</strong></td>
+          <td>ส่งเสียงเตือนทุกครั้งที่คุณก้มมองเพียงแวบเดียว</td>
+          <td class="highlight-col"><strong>มีช่วงเวลาผ่อนปรน: การก้มมองคีย์บอร์ดหรือหันไปคุยจะไม่ถูกเตือน</strong></td>
+        </tr>
+        <tr>
+          <td><strong>ระหว่างการคุยสาย</strong></td>
+          <td>ยังคงส่งเสียงเตือนแทรกขณะที่คุณกำลังประชุม</td>
+          <td class="highlight-col"><strong>เงียบสนิทระหว่างการโทรหรือเมื่อคุณถอดหูฟังออก</strong></td>
+        </tr>
+        <tr>
+          <td><strong>ความเป็นส่วนตัว</strong></td>
+          <td>ต้องประมวลผลวิดีโอของคุณอย่างต่อเนื่อง</td>
+          <td class="highlight-col"><strong>ข้อมูลการเคลื่อนไหวของศีรษะถูกประมวลผลสดและไม่ถูกบันทึกเลย</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>ความเป็นส่วนตัวในย่อหน้าเดียว</h2>
   <p>Poisette ไม่มีการเข้าถึงเครือข่าย ไม่มีบัญชี และไม่มีการติดตาม การเคลื่อนไหวของศีรษะถูกใช้ทันทีที่ได้รับและไม่ถูกบันทึกเลย เก็บไว้เพียงจำนวนนาทีที่คุณนั่งตัวตรงและนั่งค่อม บนอุปกรณ์ของคุณ <a href="privacy.html">นโยบายความเป็นส่วนตัว</a>ฉบับเต็มก็กล่าวไว้เช่นเดียวกันอย่างละเอียดกว่า</p>

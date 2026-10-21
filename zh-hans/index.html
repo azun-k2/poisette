@@ -48,6 +48,7 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="zh-hans" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
@@ -107,6 +108,32 @@
   </details><!-- /family:nav -->
   </nav>
 </div>
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="演示：在端正坐姿与含胸驼背之间切换" data-good="坐姿端正挺拔" data-slouch="头部向前低垂：稍作等待后，Poisette 将轻声提醒您">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">试一试</p>
+      <p class="po-desc">看看 Poisette 能察觉到什么：</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">挺直坐好</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">低头驼背</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">坐姿端正挺拔</p>
+    </div>
+    <p class="demo-note">理念模拟。实际应用利用了 AirPods Pro、AirPods Max 和 Beats Fit Pro 中的头部追踪传感器。</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
 
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
@@ -123,6 +150,48 @@
   <p class="note">需要 macOS 14 Sonoma 或更高版本，或 iOS 和 iPadOS 17 或更高版本，以及支持头部追踪的耳机。一次购买，Mac、iPhone 和 iPad 通用。Poisette 是帮你保持良好坐姿的提醒工具，而不是医疗设备。</p>
 </section>
 
+<section class="card comparison-card" id="comparison">
+  <h2>基于摄像头的姿态软件与 Poisette 的对比</h2>
+  <p class="section-lead">无需开启摄像头，也绝不保存任何个人隐私的体态教练。</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>对比项目</th>
+          <th>用摄像头对着您</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>摄像头要求</strong></td>
+          <td>必须开启摄像头时刻监视您</td>
+          <td class="highlight-col"><strong>无需摄像头：仅利用 AirPods 内置的头部姿态传感器</strong></td>
+        </tr>
+        <tr>
+          <td><strong>使用场景</strong></td>
+          <td>只能固定在书桌前且光线良好的环境下</td>
+          <td class="highlight-col"><strong>只要佩戴耳机随时可用，明亮或完全黑暗均可</strong></td>
+        </tr>
+        <tr>
+          <td><strong>频繁打扰</strong></td>
+          <td>只要低头看一眼就立刻发出警报</td>
+          <td class="highlight-col"><strong>智能宽限时间：低头看键盘或转头谈话均自动忽略</strong></td>
+        </tr>
+        <tr>
+          <td><strong>通话期间</strong></td>
+          <td>重要语音会议中仍然不断响铃打扰</td>
+          <td class="highlight-col"><strong>在通话或摘下耳机时自动保持静音</strong></td>
+        </tr>
+        <tr>
+          <td><strong>隐私安全</strong></td>
+          <td>必须持续分析您的个人面部视频流</td>
+          <td class="highlight-col"><strong>头部姿态数据实时计算完毕即丢弃，从不存储</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section class="card">
   <h2>隐私概要</h2>
   <p>Poisette 没有网络访问，没有账户，也没有跟踪。你的头部动作在到达时即被使用，从不存储；只保留你坐直和驼背的分钟数，存放在你的设备上。完整的<a href="privacy.html">隐私政策</a>对此有更详细的说明。</p>
