@@ -48,12 +48,14 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="family/family.js" defer data-lang="en" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="demo.css">
 </head>
 <body>
 <main>
 <div class="hero">
-  <img class="icon" src="icon-512.png" alt="" width="112" height="112">
-  <h1>Poisette</h1>
+  <div class="hero-pill">⚡ Uses your AirPods&#x27; head tracking · No camera</div>
+  <img class="icon" src="icon-512.png" alt="Poisette" width="112" height="112">
+  <h1>Sit tall.<br><span class="gradient-text">Gently reminded by your headphones.</span></h1>
   <p class="tagline">Sit tall, gently reminded by the headphones you already wear.</p>
   <!-- family:stores -->
   <div class="family-stores">
@@ -61,7 +63,8 @@
     <a class="family-store" href="https://apps.apple.com/app/id6816540953?platform=iphone"><img src="family/badges/download-on-the-app-store.svg" alt="Download on the App Store for iPhone and iPad" height="46"></a>
   </div>
   <!-- /family:stores -->
-<nav class="links">
+  <p class="platform-banner">Available on Mac, iPhone and iPad</p>
+  <nav class="links">
     <a href="./">Home</a>
     <a href="support.html">Support</a>
     <a href="privacy.html">Privacy policy</a>
@@ -108,11 +111,40 @@
   </nav>
 </div>
 
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Demo: switch between sitting tall and slouching" data-good="Sitting tall" data-slouch="Head dropped forward: after a short grace time, Poisette nudges you">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Try it</p>
+      <p class="po-desc">See what Poisette notices:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Sit tall</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Slouch</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Sitting tall</p>
+    </div>
+    <p class="demo-note">A simulation. The real thing reads the head tracking in AirPods Pro, AirPods (3rd generation or later), AirPods Max and Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
+
+  
+
 <!-- family:shot --><figure class="shot"><img src="img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
   <h2>What it does</h2>
   <p>AirPods Pro, AirPods (3rd generation or later), AirPods Max and Beats Fit Pro know the tilt of your head. Poisette learns how you look when you sit tall, and nudges you when your head has been dropped forward for too long. On the Mac it watches from the menu bar while you work. On iPhone and iPad it watches during a posture session of 25, 50 or 90 minutes, or an open one, with a calm focus sound that keeps it watching while the screen is locked.</p>
-  <ul>
+  <ul class="feature-list">
     <li><strong>Learns you in three seconds.</strong> Sit tall and calibrate; slouch once more if you like, and it sets its own sensitivity.</li>
     <li><strong>Smart, not nagging.</strong> A grace time, glances at the keyboard ignored, turning to talk ignored, and a pause between nudges.</li>
     <li><strong>A nudge your way.</strong> On the Mac, a soft dim of the screen that lifts as you sit up, a chime, a notification, or just the icon. On iPhone and iPad, a chime, a gentle tap and a “Sit tall” note while Poisette is open, or a chime and a notification while it plays in the background.</li>
@@ -121,6 +153,49 @@
     <li><strong>Neck stretch breaks</strong> that your headphones follow move by move.</li>
   </ul>
   <p class="note">Requires macOS 14 Sonoma or later, or iOS and iPadOS 17 or later, and headphones with head tracking. One purchase covers Mac, iPhone and iPad. Poisette is a reminder to sit well, not a medical device.</p>
+</section>
+
+<section class="card comparison-card" id="comparison">
+  <h2>A camera-based reminder vs Poisette</h2>
+  <p class="section-lead">Posture coaching that needs no camera and keeps nothing.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>A camera pointed at you</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Camera</strong></td>
+          <td>Needs a camera watching you</td>
+          <td class="highlight-col"><strong>No camera: it uses the head tracking in your AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Where it works</strong></td>
+          <td>At your desk, in good light</td>
+          <td class="highlight-col"><strong>Wherever you wear the headphones, light or dark</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Nagging</strong></td>
+          <td>A nudge every time you look down</td>
+          <td class="highlight-col"><strong>A grace time; glances at the keyboard and turning to talk are ignored</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Quiet moments</strong></td>
+          <td>Keeps reminding you on a call</td>
+          <td class="highlight-col"><strong>Quiet when the headphones are out or you are on a call</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Privacy</strong></td>
+          <td>Video of you has to be analysed</td>
+          <td class="highlight-col"><strong>Head motion is used as it arrives and never stored</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section class="card">

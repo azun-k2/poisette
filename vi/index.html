@@ -48,12 +48,14 @@
 <link rel="alternate" hreflang="x-default" href="https://poisette.khangazun.com/">
 <script src="../family/family.js" defer data-lang="vi" data-page="index.html" data-langs="en,ar,ca,cs,da,de,el,es,fi,fr,he,hi,hr,hu,id,it,ja,ko,ms,nb,nl,pl,pt-br,pt-pt,ro,ru,sk,sv,th,tr,uk,vi,zh-hans,zh-hant"></script>
 <!-- /family:head -->
+<link rel="stylesheet" href="../demo.css">
 </head>
 <body>
 <main>
 <div class="hero">
-  <img class="icon" src="../icon-512.png" alt="" width="112" height="112">
-  <h1>Poisette</h1>
+  <div class="hero-pill">⚡ Dùng tính năng theo dõi chuyển động đầu của AirPods · Không cần camera</div>
+  <img class="icon" src="../icon-512.png" alt="Poisette" width="112" height="112">
+  <h1>Ngồi thẳng lưng.<br><span class="gradient-text">Được tai nghe nhắc nhẹ nhàng.</span></h1>
   <p class="tagline">Ngồi thẳng, được nhắc nhẹ nhàng bởi chính chiếc tai nghe bạn đang đeo.</p>
   <!-- family:stores -->
   <div class="family-stores">
@@ -61,7 +63,8 @@
     <a class="family-store" href="https://apps.apple.com/app/id6816540953?platform=iphone"><img src="../family/badges/ios-vi.svg" alt="Tải về trên App Store cho iPhone và iPad" height="46"></a>
   </div>
   <!-- /family:stores -->
-<nav class="links">
+  <p class="platform-banner">Có trên Mac, iPhone và iPad</p>
+  <nav class="links">
     <a href="./">Trang chủ</a>
     <a href="support.html">Hỗ trợ</a>
     <a href="privacy.html">Chính sách quyền riêng tư</a>
@@ -108,11 +111,40 @@
   </nav>
 </div>
 
+<div class="demo-wrapper" id="demo">
+  <div class="po-box" role="group" aria-label="Bản demo: chuyển giữa ngồi thẳng và ngồi gù" data-good="Đang ngồi thẳng" data-slouch="Đầu cúi về phía trước: sau một khoảng chờ ngắn, Poisette sẽ nhắc bạn">
+    <div class="po-figure"><div class="po-head" id="po-head" aria-hidden="true">🙂</div><div class="po-gauge" aria-hidden="true"><i id="po-fill"></i></div></div>
+    <div class="po-copy">
+      <p class="po-title">Thử xem</p>
+      <p class="po-desc">Xem Poisette nhận ra điều gì:</p>
+      <div class="po-buttons"><button type="button" class="po-btn active" data-mode="good" aria-pressed="true">Ngồi thẳng</button><button type="button" class="po-btn" data-mode="slouch" aria-pressed="false">Ngồi gù</button></div>
+      <p class="po-status" id="po-status" aria-live="polite">Đang ngồi thẳng</p>
+    </div>
+    <p class="demo-note">Đây là minh hoạ. Ứng dụng thật đọc chuyển động đầu của AirPods Pro, AirPods (thế hệ thứ 3 trở lên), AirPods Max và Beats Fit Pro.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.po-box'); if (!box) return;
+  var head = document.getElementById('po-head'), fill = document.getElementById('po-fill'), status = document.getElementById('po-status'), btns = box.querySelectorAll('.po-btn');
+  function set(mode) {
+    var slouch = mode === 'slouch';
+    head.textContent = slouch ? '😞' : '🙂'; head.classList.toggle('slouch', slouch); fill.style.width = slouch ? '88%' : '12%';
+    box.classList.toggle('is-slouch', slouch); status.textContent = box.getAttribute(slouch ? 'data-slouch' : 'data-good');
+    btns.forEach(function (b) { var on = b.getAttribute('data-mode') === mode; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-mode')); }); });
+  set('good');
+})();
+</script>
+
+  
+
 <!-- family:shot --><figure class="shot"><img src="../img/hero.jpg" alt="" width="1600" height="860"></figure><!-- /family:shot -->
 <section class="card">
   <h2>Ứng dụng làm gì</h2>
   <p>AirPods Pro, AirPods (thế hệ thứ 3 trở lên), AirPods Max và Beats Fit Pro biết độ nghiêng của đầu bạn. Poisette học xem bạn trông thế nào khi ngồi thẳng, và nhắc bạn khi đầu bạn cúi về phía trước quá lâu. Trên Mac, ứng dụng theo dõi từ thanh menu trong lúc bạn làm việc. Trên iPhone và iPad, ứng dụng theo dõi trong một phiên tư thế dài 25, 50 hoặc 90 phút, hoặc không giới hạn, kèm một âm thanh tập trung êm dịu giúp ứng dụng tiếp tục theo dõi khi màn hình đã khóa.</p>
-  <ul>
+  <ul class="feature-list">
     <li><strong>Hiểu bạn trong ba giây.</strong> Ngồi thẳng và hiệu chỉnh; nếu muốn, ngồi gù thêm một lần nữa, và ứng dụng sẽ tự đặt độ nhạy.</li>
     <li><strong>Thông minh, không cằn nhằn.</strong> Có thời gian chờ, bỏ qua những lần liếc xuống bàn phím, bỏ qua lúc quay sang nói chuyện, và có khoảng nghỉ giữa các lần nhắc.</li>
     <li><strong>Nhắc theo cách của bạn.</strong> Trên Mac, màn hình tối nhẹ đi rồi sáng lại khi bạn ngồi thẳng, một tiếng chuông, một thông báo, hoặc chỉ biểu tượng. Trên iPhone và iPad, một tiếng chuông, một rung nhẹ và dòng chữ “Ngồi thẳng lưng” khi Poisette đang mở, hoặc một tiếng chuông và một thông báo khi ứng dụng đang phát trong nền.</li>
@@ -121,6 +153,49 @@
     <li><strong>Nghỉ giãn cơ cổ</strong> mà tai nghe theo dõi từng động tác.</li>
   </ul>
   <p class="note">Cần macOS 14 Sonoma trở lên, hoặc iOS và iPadOS 17 trở lên, và tai nghe có theo dõi chuyển động đầu. Mua một lần dùng được trên Mac, iPhone và iPad. Poisette là lời nhắc ngồi đúng tư thế, không phải thiết bị y tế.</p>
+</section>
+
+<section class="card comparison-card" id="comparison">
+  <h2>Lời nhắc dùng camera so với Poisette</h2>
+  <p class="section-lead">Huấn luyện tư thế không cần camera và không giữ lại gì.</p>
+  <div class="table-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Tiêu chí</th>
+          <th>Camera hướng vào bạn</th>
+          <th class="highlight-col">Poisette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Camera</strong></td>
+          <td>Cần một camera quan sát bạn</td>
+          <td class="highlight-col"><strong>Không cần camera: dùng tính năng theo dõi chuyển động đầu của AirPods</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Dùng được ở đâu</strong></td>
+          <td>Ở bàn làm việc, nơi đủ sáng</td>
+          <td class="highlight-col"><strong>Ở bất cứ đâu bạn đeo tai nghe, sáng hay tối</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Cằn nhằn</strong></td>
+          <td>Nhắc mỗi lần bạn nhìn xuống</td>
+          <td class="highlight-col"><strong>Có thời gian chờ; bỏ qua lúc liếc xuống bàn phím và quay sang nói chuyện</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Lúc cần yên lặng</strong></td>
+          <td>Vẫn nhắc bạn khi đang gọi</td>
+          <td class="highlight-col"><strong>Yên lặng khi tháo tai nghe hoặc khi bạn đang gọi</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Quyền riêng tư</strong></td>
+          <td>Phải phân tích video quay bạn</td>
+          <td class="highlight-col"><strong>Chuyển động đầu được dùng ngay khi nhận được và không bao giờ được lưu</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section class="card">

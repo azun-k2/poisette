@@ -1,0 +1,33 @@
+/* poisette: demo and contrast tweaks for the modern landing (family/modern.css does the rest). */
+:root { --accent-text: #287169; --solid: #2c8276; --on-solid: #ffffff; --ok: #1f9d55; --ok-text: #14733d; --bad: #e0453a; --bad-text: #b3261e; --warn-text: #a85a00; --demo-shadow: 0 30px 70px rgba(0,0,0,.18); }
+@media (prefers-color-scheme: dark) { :root { --accent-text: #7fd1c2; --solid: #7fd1c2; --on-solid: #15262a; --ok: #4ade80; --ok-text: #6ee7a0; --bad: #ff6b60; --bad-text: #ff8d84; --warn-text: #ffb454; --demo-shadow: 0 30px 70px rgba(0,0,0,.5); } }
+.hero-pill, .comp-table th.highlight-col, .comp-table td.highlight-col, body:has(.shot) .card ul > li > strong:first-child, .card ul.feature-list > li > strong:first-child { color: var(--accent-text) !important; }
+.card a { color: var(--accent-text); }
+.demo-wrapper { position: relative; max-width: 900px; margin: -120px auto 40px; }
+.demo-wrapper ~ .shot { margin-top: 0; }
+.demo-note { margin: 16px 0 0; font-size: 13px; line-height: 1.5; color: var(--muted); max-width: none; text-align: center; }
+.um-desktop + .demo-note { margin-top: 14px; }
+@media (max-width: 640px) { .demo-wrapper { margin-top: -88px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Poisette demo: a head that drops forward, and the gauge that notices it. */
+.po-box { display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 24px; padding: 30px clamp(18px, 4vw, 34px); border-radius: 22px; background: var(--card);
+  border: 1.5px solid color-mix(in srgb, var(--accent) 28%, var(--line)); box-shadow: var(--demo-shadow); }
+.po-figure { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.po-head { width: 132px; height: 132px; display: flex; align-items: center; justify-content: center; font-size: 64px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 8%, var(--card));
+  border: 4px solid var(--ok); box-shadow: 0 0 24px color-mix(in srgb, var(--ok) 30%, transparent); transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .3s, box-shadow .3s; }
+.po-head.slouch { border-color: var(--bad); box-shadow: 0 0 24px color-mix(in srgb, var(--bad) 35%, transparent); transform: translateY(12px) rotate(14deg); }
+.po-gauge { width: 140px; height: 8px; border-radius: 999px; overflow: hidden; background: color-mix(in srgb, var(--accent) 14%, var(--line)); }
+.po-gauge i { display: block; height: 100%; width: 12%; background: var(--ok); transition: width .35s, background .3s; }
+.po-box.is-slouch .po-gauge i { background: var(--bad); }
+.po-copy { max-width: 390px; text-align: left; }
+.po-title { font-weight: 750; font-size: 17px; margin: 0 0 6px; }
+.po-desc { color: var(--muted); font-size: 14.5px; margin: 0 0 14px; max-width: none; }
+.po-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.po-btn { cursor: pointer; font: inherit; font-weight: 650; font-size: 14.5px; color: var(--ink); background: var(--card); padding: 9px 20px; border-radius: 999px; border: 1.5px solid color-mix(in srgb, var(--accent) 30%, var(--line)); transition: all .2s; }
+.po-btn:hover { border-color: var(--accent); }
+.po-btn.active { background: var(--solid); color: var(--on-solid); border-color: transparent; }
+.po-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.po-status { margin: 0; font-weight: 700; color: var(--ok-text); min-height: 3em; }
+.po-box.is-slouch .po-status { color: var(--bad-text); }
+.po-box .demo-note { flex-basis: 100%; }
